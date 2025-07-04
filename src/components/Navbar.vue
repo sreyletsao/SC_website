@@ -7,7 +7,7 @@
       </RouterLink>
 
       <!-- Desktop Menu -->
-      <ul class="hidden md:flex space-x-8 text-sm font-medium">
+      <ul class="hidden md:flex space-x-8 text-lm font-medium">
         <RouterLink
           to="/"
           class="hover:text-emerald-700 transition"

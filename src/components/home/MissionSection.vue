@@ -1,9 +1,9 @@
 <template>
   <section class="py-20 bg-white">
-    <div class="container mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+    <div class="container mx-auto px-16 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
       <!-- Mission Content -->
       <div>
-        <h2 class="text-4xl font-bold text-gray-800 mb-6">Our Mission</h2>
+        <h2 class="text-4xl font-bold text-emerald-600 mb-6">Our Mission</h2>
         <p class="text-lg text-gray-600 mb-6">
           We believe in creating sustainable solutions that empower Cambodian communities to thrive independently. Through education, environmental stewardship, and community development, we're building a brighter future together.
         </p>
@@ -36,7 +36,7 @@
       <!-- Image -->
       <div class="relative">
         <img
-          src="/learning.jpg"
+          src="/src/img/aboutPage/mission.png"
           alt="Children learning"
           class="rounded-lg shadow-xl"
         />

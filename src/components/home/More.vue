@@ -4,7 +4,7 @@
     <!-- Background texture -->
     <div class="absolute inset-0 bg-[url('@/assets/cambodia-texture.jpg')] opacity-10"></div>
     
-    <div class="container mx-auto px-4 relative">
+    <div class="container mx-auto px-16 relative">
       <!-- Heading with photo -->
       <div class="flex flex-col lg:flex-row items-center gap-12 mb-16">
         <div class="lg:w-1/2">
