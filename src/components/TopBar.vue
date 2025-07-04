@@ -3,7 +3,7 @@
     <div class="container mx-auto px-4 py-2 flex justify-between items-center">
       <div class="flex space-x-4">
         <a href="#" class="hover:text-emerald-200 transition">Sponsor Login</a>
-        <a href="#" class="hover:text-emerald-200 transition">Contact Us</a>
+        <a href="/contact" class="hover:text-emerald-200 transition">Contact Us</a>
       </div>
       <div class="flex space-x-3">
         <a href="https://www.facebook.com/SustainableCambodia" target="_blank" class="hover:text-emerald-200">
