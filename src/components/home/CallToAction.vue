@@ -13,13 +13,13 @@
           Donate Now
         </RouterLink>
         <RouterLink
-          to="/get-involved"
+          to="#"
           class="border-2 border-white text-white hover:bg-white hover:text-emerald-800 px-8 py-4 rounded-lg font-semibold transition-colors"
         >
           Volunteer
         </RouterLink>
         <RouterLink
-          to="/sponsor"
+          to="#"
           class="border-2 border-white text-white hover:bg-white hover:text-emerald-800 px-8 py-4 rounded-lg font-semibold transition-colors"
         >
           Sponsor a Child
