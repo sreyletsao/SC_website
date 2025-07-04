@@ -4,8 +4,10 @@
     <Navbar />
     <AboutBanner />
     <OurStory />
+    <BoardMembers />
+    <OnSiteTeam />
     <MissionValues />
-    <Leadership />
+    <!-- <Leadership /> -->
     <Timeline />
     <AboutCTA />
     <Footer />
@@ -23,4 +25,6 @@ import MissionValues from '@/components/about/MissionValues.vue'
 import Leadership from '@/components/about/Leadership.vue'
 import Timeline from '@/components/about/Timeline.vue'
 import AboutCTA from '@/components/about/AboutCTA.vue'
+import OnSiteTeam from '@/components/about/OnSiteTeam.vue'
+import BoardMembers from '@/components/about/BoardMembers.vue'
 </script>

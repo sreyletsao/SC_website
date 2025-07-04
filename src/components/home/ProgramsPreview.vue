@@ -13,7 +13,7 @@
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         <!-- Education -->
         <div class="bg-white rounded-lg shadow-lg hover:shadow-xl transition">
-          <img src="/education.jpg" alt="Education Program" class="w-full h-48 object-cover" />
+          <img src="/src/img/homePage/2childs.png" alt="Education Program" class="w-full h-48 object-cover" />
           <div class="p-6">
             <h3 class="text-xl font-semibold text-gray-800 mb-3">Education & Scholarships</h3>
             <p class="text-gray-600 mb-4">

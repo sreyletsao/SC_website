@@ -4,8 +4,9 @@
     <Navbar />
     <HeroSection />
     <ImpactStats />
-    <MissionSection />
-    <ProgramsPreview />
+    <More/>
+    <!-- <MissionSection /> -->
+    <!-- <ProgramsPreview /> -->
     <CorporateSponsors />
     <CallToAction />
     <Footer />
@@ -22,4 +23,5 @@ import ProgramsPreview from '@/components/home/ProgramsPreview.vue'
 import CallToAction from '@/components/home/CallToAction.vue'
 import CorporateSponsors from '@/components/home/CorporateSponsors.vue'
 import Footer from '@/components/Footer.vue'
+import More from '@/components/home/More.vue'
 </script>

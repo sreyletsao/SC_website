@@ -1,12 +1,12 @@
 <template>
-  <section class="relative h-[600px] bg-gradient-to-r from-emerald-900 to-emerald-700">
+  <section class="relative h-[700px] bg-gradient-to-r from-emerald-900 to-emerald-700">
     <!-- Background image overlays -->
     <div class="absolute inset-0 bg-black bg-opacity-40"></div>
     <div
       class="absolute inset-0 bg-cover bg-center"
       style="background-image: url('/bg.jpg')"
     ></div>
-    <div class="absolute inset-0 bg-gradient-to-r from-black/60 to-black/30"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-black/70 to-black/0"></div>
 
     <!-- Content -->
     <div class="relative container mx-auto px-4 h-full flex items-center">

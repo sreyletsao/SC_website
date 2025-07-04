@@ -9,7 +9,7 @@
         <a href="https://www.facebook.com/SustainableCambodia" target="_blank" class="hover:text-emerald-200">
           <Facebook class="w-4 h-4" />
         </a>
-        <a href="https://www.youtube.com/channel/UC4xuPa6bHkz4MGBwYdfRMJg" target="_blank" class="hover:text-emerald-200">
+        <a href="https://www.youtube.com/channel/UCUNs0tY2ais7BLhaB_C4tDw" target="_blank" class="hover:text-emerald-200">
           <Youtube class="w-4 h-4" />
         </a>
         <a href="https://www.instagram.com/sustainablecambodia/" target="_blank" class="hover:text-emerald-200">
