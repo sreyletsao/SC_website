@@ -9,7 +9,7 @@
       >
         <div class="bg-white p-6 rounded-lg shadow flex flex-col md:flex-row items-center border border-gray-100 h-full mx-1">
           <img
-            :src="member.photo"
+            :src="member.image"
             :alt="member.name"
             class="w-20 h-20 md:w-24 md:h-24 object-cover rounded-full mb-4 md:mb-0 md:mr-4"
           />
@@ -17,7 +17,7 @@
             <h3 class="text-lg font-bold text-gray-800">{{ member.name }}</h3>
             <p class="text-orange-600 font-semibold mb-2">{{ member.position }}</p>
             <p class="text-sm text-gray-600">
-              {{ member.bio }}
+              {{ member.description }}
             </p>
           </div>
         </div>
@@ -41,43 +41,53 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted, watch, nextTick } from 'vue'
 import KeenSlider from 'keen-slider'
 
 const props = defineProps({
-  members: Array
+  members: Array,
 })
 
 const sliderContainer = ref(null)
 const slider = ref(null)
 const interval = ref(null)
 
-onMounted(() => {
-  if (sliderContainer.value) {
-    slider.value = new KeenSlider(sliderContainer.value, {
-      loop: true,
-      slides: {
-        perView: 1,
-        spacing: 8,
-      },
-      breakpoints: {
-        '(min-width: 768px)': {
-          slides: {
-            perView: 2,
-            spacing: 12,
+// Watch for when props.members is loaded
+watch(
+  () => props.members,
+  async (newVal) => {
+    if (newVal.length && sliderContainer.value) {
+      await nextTick() // Wait until DOM is rendered
+
+      // Destroy old slider if exists
+      if (slider.value) {
+        slider.value.destroy()
+      }
+
+      slider.value = new KeenSlider(sliderContainer.value, {
+        loop: true,
+        slides: {
+          perView: 1,
+          spacing: 8,
+        },
+        breakpoints: {
+          '(min-width: 768px)': {
+            slides: {
+              perView: 2,
+              spacing: 12,
+            },
           },
         },
-      },
-    })
+      })
 
-    // Autoplay setup
-    startAutoplay()
-    
-    // Pause on hover
-    sliderContainer.value.addEventListener('mouseenter', pauseAutoplay)
-    sliderContainer.value.addEventListener('mouseleave', startAutoplay)
-  }
-})
+      startAutoplay()
+
+      sliderContainer.value.addEventListener('mouseenter', pauseAutoplay)
+      sliderContainer.value.addEventListener('mouseleave', startAutoplay)
+    }
+  },
+  { immediate: true }
+)
 
 onUnmounted(() => {
   clearInterval(interval.value)
@@ -95,6 +105,7 @@ function pauseAutoplay() {
   clearInterval(interval.value)
 }
 </script>
+
 
 <style>
 @import 'keen-slider/keen-slider.min.css';
