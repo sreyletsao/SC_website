@@ -38,7 +38,7 @@ onMounted(async () => {
   try {
     const response = await getSponsor()
     console.log('Sponsor API response:', response)
-    sponsors.value = response.Staff
+    sponsors.value = response.Sponsors
   } catch (error) {
     console.error('Error fetching sponsors:', error)
   }
