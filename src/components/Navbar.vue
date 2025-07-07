@@ -31,7 +31,14 @@
         >
           Programs
         </RouterLink>
-
+        <RouterLink
+          to="/getInvolved"
+          class="hover:text-emerald-700 transition"
+          :class="isActive('/getInvolved')"
+        >
+          Get Involved
+        </RouterLink>
+        
         <RouterLink
           to="/donate"
           class="hover:text-emerald-700 transition"

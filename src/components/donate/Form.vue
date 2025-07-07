@@ -1,170 +1,123 @@
 <template>
-  <div class="min-h-screen text-black px-4 py-8 flex flex-col items-center mt-6">
-    <div class="w-full max-w-7xl flex flex-col md:flex-row gap-10 pl-12">
-      <!-- Smaller Form -->
-      <form @submit.prevent="submitForm"
-            class="bg-white p-4 rounded-lg shadow w-full md:w-1/2 space-y-4 text-sm">
+  <div class="min-h-screen bg-gray-50 px-4 py-10">
+    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+      
+      <!-- Donation Form -->
+      <form class="bg-white p-6 rounded-2xl shadow-lg space-y-6 text-sm">
+        <h2 class="text-2xl font-bold mb-2 text-orange-500">Make a Donation</h2>
+  
         <!-- Donation Amount -->
         <div>
-          <label class="block font-semibold mb-1">Donation Amount *</label>
-          <div class="flex gap-3 flex-wrap text-sm">
-            <label class="flex items-center gap-1">
-              <input type="radio" v-model="form.amount" :value="25" /> $25
+          <label class="block font-semibold mb-2">Donation Amount <span class=" text-red-600">*</span></label>
+          <div class="flex flex-wrap gap-4">
+            <label class="flex items-center gap-2">
+              <input type="radio" name="amount" />
+              $25
             </label>
-            <label class="flex items-center gap-1">
-              <input type="radio" v-model="form.amount" :value="50" /> $50
+            <label class="flex items-center gap-2">
+              <input type="radio" name="amount" />
+              $50
             </label>
-            <label class="flex items-center gap-1">
-              <input type="radio" v-model="form.amount" :value="100" /> $100
+            <label class="flex items-center gap-2">
+              <input type="radio" name="amount" />
+              $100
             </label>
-            <label class="flex items-center gap-1">
-              <input type="radio" v-model="form.amount" :value="250" /> $250
+            <label class="flex items-center gap-2">
+              <input type="radio" name="amount" />
+              $250
             </label>
-            <label class="flex items-center gap-1">
-              <input type="radio" v-model="form.amount" value="other" /> Other
+            <label class="flex items-center gap-2">
+              <input type="radio" name="amount" />
+              Other
             </label>
-          </div>
-
-          <div v-if="form.amount === 'other'" class="mt-2">
-            <input
-              v-model.number="otherAmount"
-              type="number"
-              placeholder="Enter custom amount"
-              class="w-full border p-2 rounded text-sm"
-              min="1"
-              required
-            />
           </div>
         </div>
-
+  
         <!-- Comment -->
         <div>
-          <label class="block font-semibold mb-1">Comment</label>
-          <textarea v-model="form.comment" rows="2" class="w-full border p-2 rounded text-sm"></textarea>
+          <label class="block font-semibold mb-2">Comment</label>
+          <textarea rows="3" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"></textarea>
         </div>
-
-        <!-- Recurring -->
+  
+        <!-- Recurring Gift -->
         <div>
-          <label class="block font-semibold mb-1">Is this a Recurring Gift? *</label>
-          <select v-model="form.recurring" class="w-full border p-2 rounded text-sm" required>
+          <label class="block font-semibold mb-2">Is this a Recurring Gift? <span class=" text-red-600">*</span></label>
+          <select class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
             <option>No</option>
-            <option>Yes - Monthly</option>
-            <option>Yes - Yearly</option>
+            <option>Yes</option>
           </select>
         </div>
-
-        <!-- Donor Info -->
-        <div class="grid md:grid-cols-2 gap-3">
-          <input type="text" placeholder="First Name" v-model="form.firstName" class="w-full border p-2 rounded text-sm" required />
-          <input type="text" placeholder="Last Name" v-model="form.lastName" class="w-full border p-2 rounded text-sm" required />
-          <input type="email" placeholder="Email Address" v-model="form.email" class="w-full border p-2 rounded text-sm col-span-2" required />
+  
+        <!-- Name -->
+        <div class="flex gap-4">
+          <input type="text" placeholder="First Name" class="w-full p-2 border border-gray-300 rounded-lg" />
+          <input type="text" placeholder="Last Name" class="w-full p-2 border border-gray-300 rounded-lg" />
         </div>
-
-        <!-- Contact Info -->
-        <div class="grid md:grid-cols-2 gap-3">
-          <input type="text" placeholder="Address Line 1" v-model="form.address1" class="w-full border p-2 rounded text-sm" required />
-          <input type="text" placeholder="Address Line 2" v-model="form.address2" class="w-full border p-2 rounded text-sm" />
-          <input type="text" placeholder="City" v-model="form.city" class="w-full border p-2 rounded text-sm" required />
-          <input type="text" placeholder="State / Province" v-model="form.state" class="w-full border p-2 rounded text-sm" />
-          <input type="text" placeholder="Postal Code" v-model="form.postal" class="w-full border p-2 rounded text-sm" />
-          <select v-model="form.country" class="w-full border p-2 rounded text-sm" required>
-            <option value="United States">United States</option>
-            <option value="Cambodia">Cambodia</option>
-            <option value="Other">Other</option>
+  
+        <!-- Email -->
+        <input type="email" placeholder="Email Address" class="w-full p-2 border border-gray-300 rounded-lg" />
+  
+        <!-- Address -->
+        <input type="text" placeholder="Address Line 1" class="w-full p-2 border border-gray-300 rounded-lg" />
+        <input type="text" placeholder="Address Line 2" class="w-full p-2 border border-gray-300 rounded-lg" />
+  
+        <div class="flex gap-4">
+          <input type="text" placeholder="City" class="w-full p-2 border border-gray-300 rounded-lg" />
+          <input type="text" placeholder="State / Province" class="w-full p-2 border border-gray-300 rounded-lg" />
+        </div>
+  
+        <div class="flex gap-4">
+          <input type="text" placeholder="Postal Code" class="w-full p-2 border border-gray-300 rounded-lg" />
+          <select class="w-full p-2 border border-gray-300 rounded-lg">
+            <option>United States</option>
+            <!-- More countries as needed -->
           </select>
         </div>
-
-        <!-- Payment Info -->
-        <div class="space-y-2">
-          <label class="block font-semibold text-sm">Payment Information *</label>
-          <div class="grid md:grid-cols-3 gap-3">
-            <input type="text" placeholder="Card Number" class="w-full border p-2 rounded text-sm" disabled />
-            <input type="text" placeholder="MM/YY" class="w-full border p-2 rounded text-sm" disabled />
-            <input type="text" placeholder="CVC" class="w-full border p-2 rounded text-sm" disabled />
+  
+        <!-- Payment (Mocked) -->
+        <div>
+          <label class="block font-semibold mb-2">Payment Information <span class=" text-red-600">*</span></label>
+          <div class="flex gap-4">
+            <input disabled placeholder="Card Number" class="w-full p-2 border border-gray-200 rounded-lg bg-gray-100" />
+            <input disabled placeholder="MM/YY" class="w-1/3 p-2 border border-gray-200 rounded-lg bg-gray-100" />
+            <input disabled placeholder="CVC" class="w-1/4 p-2 border border-gray-200 rounded-lg bg-gray-100" />
           </div>
-          <p class="text-xs text-gray-500 italic">* Payment fields are mocked and disabled.</p>
+          <p class="text-xs text-gray-500 mt-1">* Payment fields are mocked and disabled.</p>
         </div>
-
-        <!-- Submit -->
-        <div class="text-center">
-          <button type="submit" class="bg-green-700 hover:bg-green-800 text-white px-8 py-2 rounded shadow transition text-sm">
-            Submit
-          </button>
-        </div>
+  
+        <button type="submit" class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition">Submit</button>
       </form>
-
-      <!-- Organization Info -->
-      <div class="w-full md:w-1/2 space-y-4 text-sm pr-6">
-        <p class="text-lg font-bold">To donate by mail:</p>
-        <p>
-          Please send a check payable to:<br />
-          <strong>Sustainable Cambodia, Inc.</strong><br />
-          1110 NE 3rd St<br />
-          Gainesville, FL 32601 USA
-        </p>
-
-        <hr />
-
-        <p>
-          <strong>Sustainable Cambodia, Inc.</strong> has been recognized as a tax-exempt organization under Section 501(c)(3)
-          by the Internal Revenue Service in the United States.
-        </p>
-
-        <p>
+  
+      <!-- Donate by Mail -->
+      <div class="bg-white p-6 rounded-2xl shadow-lg text-sm leading-relaxed">
+        <h2 class="text-2xl font-bold mb-4 text-orange-500">To donate by mail:</h2>
+        <p>Please send a check payable to:</p>
+        <p class="mt-2 font-semibold">Sustainable Cambodia, Inc.</p>
+        <p>1110 NE 3rd St<br />Gainesville, FL 32601 USA</p>
+  
+        <hr class="my-4 border-gray-300" />
+  
+        <p><strong>Sustainable Cambodia, Inc.</strong> has been recognized as a tax-exempt organization under Section 501(c)(3) by the Internal Revenue Service in the United States.</p>
+  
+        <p class="mt-4">
           <strong>TIN/EIN:</strong> 20-0175973<br />
           <strong>Florida Registration #:</strong> CH18807<br />
           <strong>Utah Registration #:</strong> 6986940-CHAR
         </p>
-
-        <p>
-          A copy of the official registration and financial information may be obtained from the Florida Division of
-          Consumer Services by calling toll-free <strong>(800-435-7352)</strong> or visiting
-          <a href="https://www.floridaconsumerhelp.com" class="text-blue-600 underline" target="_blank">
-            www.floridaconsumerhelp.com
-          </a>.
+  
+        <p class="mt-4">
+          A copy of the official registration and financial information may be obtained from the Florida Division of Consumer Services by calling toll-free
+          <strong>800-435-7352</strong> or visiting
+          <a href="http://www.floridaconsumerhelp.com" target="_blank" class="text-blue-600 underline">www.floridaconsumerhelp.com</a>.
         </p>
-
-        <p class="italic text-gray-600">
+  
+        <p class="text-xs italic mt-2 text-gray-600">
           Registration does not imply endorsement, approval, or recommendation by the state.
         </p>
+        <img src="https://sustainablecambodia.org/wp-content/uploads/2023/05/PG-RotaryTrips12-scaled.jpg" alt=""
+        class=" rounded mt-10"
+        >
       </div>
     </div>
   </div>
 </template>
-
-<script setup>
-import { reactive, ref, watch } from 'vue'
-
-const form = reactive({
-  amount: '',
-  comment: '',
-  recurring: 'No',
-  firstName: '',
-  lastName: '',
-  email: '',
-  address1: '',
-  address2: '',
-  city: '',
-  state: '',
-  postal: '',
-  country: 'United States',
-})
-
-const otherAmount = ref(null)
-
-watch(otherAmount, (newVal) => {
-  if (form.amount === 'other') {
-    form.amount = newVal
-  }
-})
-
-function submitForm() {
-  if (form.amount === 'other' && !otherAmount.value) {
-    alert('Please enter a valid donation amount.')
-    return
-  }
-
-  console.log('Form submitted:', form)
-  alert('Thank you for your donation!')
-}
-</script>

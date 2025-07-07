@@ -32,10 +32,11 @@
       <div>
         <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
         <ul class="space-y-2 text-gray-400">
+          <li><RouterLink to="/" class="hover:text-white">Home</RouterLink></li>
           <li><RouterLink to="/about" class="hover:text-white">About Us</RouterLink></li>
           <li><RouterLink to="/programs" class="hover:text-white">Our Programs</RouterLink></li>
-          <li><RouterLink to="/get-involved" class="hover:text-white">Get Involved</RouterLink></li>
-          <li><RouterLink to="/news" class="hover:text-white">News & Updates</RouterLink></li>
+          <li><RouterLink to="/donate" class="hover:text-white">Donate</RouterLink></li>
+          <li><RouterLink to="/getInvolved" class="hover:text-white">Get Involved</RouterLink></li>
         </ul>
       </div>
 
@@ -46,7 +47,7 @@
           <li><RouterLink to="/programs#education" class="hover:text-white">Education</RouterLink></li>
           <li><RouterLink to="/programs#environment" class="hover:text-white">Environment</RouterLink></li>
           <li><RouterLink to="/programs#community" class="hover:text-white">Community Development</RouterLink></li>
-          <li><RouterLink to="/trips" class="hover:text-white">Cambodia Trips</RouterLink></li>
+          <li><RouterLink to="#" class="hover:text-white">Cambodia Trips</RouterLink></li>
         </ul>
       </div>
 
