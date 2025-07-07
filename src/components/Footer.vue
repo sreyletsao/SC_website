@@ -36,6 +36,7 @@
           <li><RouterLink to="/about" class="hover:text-white">About Us</RouterLink></li>
           <li><RouterLink to="/programs" class="hover:text-white">Our Programs</RouterLink></li>
           <li><RouterLink to="/donate" class="hover:text-white">Donate</RouterLink></li>
+          <li><RouterLink to="/getInvolved" class="hover:text-white">Get Involved</RouterLink></li>
         </ul>
       </div>
 
