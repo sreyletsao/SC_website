@@ -2,7 +2,7 @@
   <!-- Health Program -->
   <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
     <div class="relative h-64">
-      <img src="/src/img/programPage/Health.png" alt="Health Program" class="w-full h-full object-cover">
+      <img :src="currentImage" alt="Health Program" class="w-full h-full object-cover transition-opacity duration-500">
       <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
       <div class="absolute bottom-4 left-4">
         <div class="bg-red-600 p-3 rounded-full">
@@ -10,33 +10,62 @@
         </div>
       </div>
     </div>
+
     <div class="p-6">
-      <h3 class="text-2xl font-bold text-gray-800 mb-3">Health</h3>
+      <h3 class="text-2xl font-bold text-gray-800 mb-3">Healthcare & Community Wellbeing</h3>
       <p class="text-gray-600 mb-4">
-        Delivering essential healthcare services, medical supplies, and health education to improve 
-        community wellness and prevent disease through comprehensive health programs.
+        Our Healthcare Programs improve quality of life by promoting hygiene, nutrition, and access to essential health education. Through community training and care, we help build healthier, stronger, and more resilient villages.
       </p>
-      <ul class="text-sm text-gray-600 mb-6 space-y-2">
+
+      <ul class="text-sm text-gray-600 space-y-2">
         <li class="flex items-center">
           <CheckCircle class="w-4 h-4 text-green-600 mr-2" />
-          Mobile health clinics
+          Hygiene Training – Teaching basic health & sanitation
         </li>
         <li class="flex items-center">
           <CheckCircle class="w-4 h-4 text-green-600 mr-2" />
-          Medical supply distribution
+          Latrines – Reducing water contamination & disease
         </li>
         <li class="flex items-center">
           <CheckCircle class="w-4 h-4 text-green-600 mr-2" />
-          Health education workshops
+          Preschool Nutrition – Fighting child malnutrition
+        </li>
+        <li class="flex items-center">
+          <CheckCircle class="w-4 h-4 text-green-600 mr-2" />
+          Days for Girls – Menstrual health education & supplies
+        </li>
+        <li class="flex items-center">
+          <CheckCircle class="w-4 h-4 text-green-600 mr-2" />
+          Community-driven health solutions for lasting impact
         </li>
       </ul>
-      <button class="w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-lg font-semibold transition-colors">
-        Learn More
-      </button>
     </div>
   </div>
 </template>
 
 <script setup>
+import { ref, onMounted, onBeforeUnmount } from 'vue'
 import { Heart, CheckCircle } from 'lucide-vue-next'
+
+// Slideshow images for Health Program
+const images = [
+  '/src/img/programPage/Health.png',
+  '/src/img/programPage/Health1.png',
+  '/src/img/programPage/Health2.png',
+  '/src/img/programPage/Health4.png'
+]
+
+const currentImage = ref(images[0])
+let index = 0
+let interval = null
+
+const startSlideshow = () => {
+  interval = setInterval(() => {
+    index = (index + 1) % images.length
+    currentImage.value = images[index]
+  }, 3000)
+}
+
+onMounted(startSlideshow)
+onBeforeUnmount(() => clearInterval(interval))
 </script>
