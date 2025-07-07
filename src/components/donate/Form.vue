@@ -90,8 +90,9 @@
         <p class="text-xs italic mt-2 text-gray-600">
           Registration does not imply endorsement by the state.
         </p>
-        <img src="https://sustainablecambodia.org/wp-content/uploads/2023/05/PG-RotaryTrips12-scaled.jpg" alt=""
-          class="rounded mt-10" />
+        <img src="/src/img/donate.png" alt=""
+        class=" rounded mt-10"
+        >
       </div>
     </div>
   </div>

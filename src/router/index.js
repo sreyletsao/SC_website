@@ -4,6 +4,7 @@ import ProjectView from '@/views/ProjectView.vue'
 import DonateView from '@/views/DonateView.vue'
 import { Contact } from 'lucide-vue-next'
 import ContactView from '@/views/ContactView.vue'
+import GetInvolvedView from '@/views/GetInvolvedView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -30,6 +31,11 @@ const router = createRouter({
       path: '/donate',
       name: 'donate',
       component: DonateView,
+    },
+    {
+      path: '/getInvolved',
+      name: 'getInvolved',
+      component: GetInvolvedView,
     },
     {
       path: '/contact',

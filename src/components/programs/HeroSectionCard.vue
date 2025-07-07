@@ -1,14 +1,14 @@
 <template>
   <!-- Hero Section with Background Image -->
   <section class="relative text-white py-20 min-h-[500px] flex items-center">
-    <!-- Background Image -->
+
     <div class="absolute inset-0">
       <img 
         src="/src/img/programPage/hader.png"
         alt="Cambodia Community"
         class="w-full h-full object-cover"
       >
-      <!-- Overlay for better text readability -->
+
       <div class="absolute inset-0 bg-gradient-to-r"></div>
       <div class="absolute inset-0 "></div>
     </div>
@@ -20,12 +20,12 @@
           Empowering communities through sustainable development initiatives that create lasting change in Cambodia
         </p>
         <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
-          <button class="bg-orange-600 hover:bg-orange-700 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg">
-            SPONSOR A CHILD
-          </button>
-          <button class="bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg">
-            DONATE
-          </button>
+          <RouterLink
+          to="/donate"
+          class="bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 rounded-lg font-semibold transition-colors"
+        >
+          Donate Now
+        </RouterLink>
         </div>
       </div>
     </div>
