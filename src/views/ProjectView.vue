@@ -9,6 +9,7 @@
   <SustainabilityCard/>
 
   </div>
+  <Gift/>
   <Impact/>
   <CallToActionCard/>
 
@@ -28,4 +29,5 @@ import SustainabilityCard from '@/components/programs/SustainabilityCard.vue';
 import CallToAction from '@/components/home/CallToAction.vue';
 import CallToActionCard from '@/components/programs/CallToActionCard.vue';
 import Impact from '@/components/programs/Impact.vue';
+import Gift from '@/components/programs/Gift.vue';
 </script>
