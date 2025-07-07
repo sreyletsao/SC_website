@@ -21,7 +21,7 @@
         </p>
         <div class="flex flex-col sm:flex-row gap-4">
           <RouterLink
-            to="/donate"
+            to="/getInvolved"
             class="bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 rounded-lg font-semibold transition-colors flex items-center justify-center"
           >
             Get Involved
