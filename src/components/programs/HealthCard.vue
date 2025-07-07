@@ -52,7 +52,7 @@ const images = [
   '/src/img/programPage/Health.png',
   '/src/img/programPage/Health1.png',
   '/src/img/programPage/Health2.png',
-  '/src/img/programPage/Health4.png'
+  '/src/img/programPage/image.png'
 ]
 
 const currentImage = ref(images[0])
