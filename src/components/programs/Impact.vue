@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
 <section class="py-16 bg-green-700">
       <div class="container mx-auto px-4">
         <div class="text-center mb-12">
@@ -28,4 +28,7 @@
         </div>
       </div>
     </section>
+    </template> -->
+    <template>
+      <h1></h1>
     </template>
