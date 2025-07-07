@@ -6,7 +6,7 @@
             :style="{ backgroundImage: `url(${backgroundImage})` }"></div>
 
         <!-- Overlay -->
-        <div class="relative max-w-5xl mx-auto px-6 py-20 text-center">
+        <div class="relative max-w-5xl mx-auto px-24 py-28 text-center">
             <h1 class="text-4xl md:text-6xl font-bold mb-6 mt-20 drop-shadow-lg">
                 Support Our Cause
             </h1>
