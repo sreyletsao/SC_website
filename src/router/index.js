@@ -5,6 +5,9 @@ import DonateView from '@/views/DonateView.vue'
 import { Contact } from 'lucide-vue-next'
 import ContactView from '@/views/ContactView.vue'
 import GetInvolvedView from '@/views/GetInvolvedView.vue'
+import Login from '@/components/Authentication/Login.vue'
+import Dashboard from '@/components/Admin/Dashboard.vue'
+import Register from '@/components/Authentication/Register.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -41,6 +44,21 @@ const router = createRouter({
       path: '/contact',
       name: 'contact',
       component: ContactView
+    },
+    {
+      path: '/register',
+      name: 'register',
+      component: Register
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: Login
+    },
+    {
+      path: '/dashboard',
+      name: 'dashboard',
+      component: Dashboard
     },
   ],
 })

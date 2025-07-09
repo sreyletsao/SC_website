@@ -46,6 +46,15 @@
         >
           Donate
         </RouterLink>
+        <RouterLink
+          to="/login"
+          class="hover:text-emerald-700 transition flex items-center space-x-1"
+          :class="isActive('/login')"
+        >
+          <UserCog class="w-5 h-5" />
+          <span>Admin</span>
+        </RouterLink>
+
       </ul>
 
       <!-- Mobile Menu Button -->
@@ -89,6 +98,14 @@
         >
           Donate
         </RouterLink>
+        <button
+            @click="goToLogin"
+            class="hover:text-emerald-700 transition flex items-center space-x-1 text-gray-700"
+          >
+            <UserCog class="w-5 h-5" />
+            <span>Admin</span>
+          </button>
+
       </ul>
     </div>
   </nav>
@@ -96,11 +113,16 @@
 
 <script setup>
 import { ref } from 'vue'
-import { useRoute, RouterLink } from 'vue-router'
-import { Menu } from 'lucide-vue-next'
+import { useRoute, RouterLink, useRouter } from 'vue-router'
+import { Menu,UserCog } from 'lucide-vue-next'
 
 const route = useRoute()
 const mobileMenuOpen = ref(false)
+const router = useRouter()
+const goToLogin = () => {
+  router.push('/login')
+}
+
 
 // Add active link class
 const isActive = (path) => {

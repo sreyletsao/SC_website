@@ -100,7 +100,7 @@
 
 <script setup>
 import { onMounted, ref } from 'vue'
-import emailjs from 'emailjs-com'
+
 
 // ✅ Replace with your actual values from EmailJS
 const serviceID = 'your_service_id'
@@ -108,9 +108,7 @@ const templateID = 'your_template_id'
 const publicKey = 'your_public_key'
 
 // Initialize EmailJS
-onMounted(() => {
-  emailjs.init(publicKey)
-})
+
 
 const presetAmounts = [25, 50, 100, 250]
 const countries = [
