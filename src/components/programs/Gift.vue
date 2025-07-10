@@ -31,16 +31,15 @@
         </div>
 
         <!-- Selected Gift Detail -->
-        <div v-if="selected" class="bg-orange-50 rounded-xl p-6 border border-orange-200">
+        <div v-if="giftsMap[selected]" class="bg-orange-50 rounded-xl p-6 border border-orange-200">
           <div>
-            <h3 class="text-xl font-bold text-orange-600 mb-2">{{ giftsMap[selected].title }}</h3>
-            <!-- <p class="text-gray-700 leading-relaxed">{{ giftsMap[selected].description }}</p> -->
-            <div class="text-gray-700 text-justify leading-relaxed" v-html="formatDescription(giftsMap[selected].description)"></div>
+            <h3 class="text-xl font-bold text-orange-600 mb-2">{{ giftsMap[selected]?.title }}</h3>
+            <div class="text-gray-700 text-justify leading-relaxed" v-html="formatDescription(giftsMap[selected]?.description)"></div>
           </div>
           <div class="bg-white p-2 rounded-lg shadow-sm w-1/2 mx-auto">
             <img
-              :src="giftsMap[selected].detailImage"
-              :alt="giftsMap[selected].label"
+              :src="giftsMap[selected]?.detailImage"
+              :alt="giftsMap[selected]?.label"
               class="w-64 h-44 object-cover rounded"
             />
           </div>
@@ -48,7 +47,7 @@
       </div>
 
       <!-- RIGHT SIDE: Order Form -->
-      <div class="bg-white rounded-xl p-6 shadow-lg">
+            <div class="bg-white rounded-xl p-6 shadow-lg">
         <h2 class="text-3xl font-bold text-orange-500 mb-6">Your Gift Selection</h2>
 
         <!-- Gift Item -->
@@ -142,6 +141,7 @@
                 </div>
               </div>
             </div>
+
           </div>
         </div>
         <!-- Total Summary -->
@@ -199,6 +199,7 @@
             />
           </div>
         </div>
+
 
         <!-- Payment Information -->
         <div class="mb-6">
@@ -282,135 +283,48 @@
           Donate ${{ total.toLocaleString() }}
         </button>
       </div>
+
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
+import { ref, computed, onMounted } from "vue";
+import apiInstance from "@/plugin/axios";
 
-const selected = ref("cows");
+const selected = ref("");
 const total = ref(0);
-const quantities = ref({
-  cows: 0,
-  ducks: 0,
-  chickens: 0,
-  water: 0,
-  garden: 0,
-  basket: 0
-});
+const quantities = ref({});
+const selectedOptions = ref({});
+const gifts = ref([]);
+const isLoading = ref(true);
 
-const selectedOptions = ref({
-  cows: null,
-  ducks: null,
-  chickens: null,
-  water: null,
-  garden: null,
-  basket: null
-});
+function getImageUrl(path) {
+  if (!path) return '';
+  if (path.startsWith('http')) return path;
+  return `http://localhost:8000/storage/${path}`;
+}
 
-const gifts = ref([
-  {
-    key: "cows",
-    label: "Cows",
-    title: "A Gift of Cows",
-    image: "/src/img/gift/cows.png",
-    detailImage: "/src/img/gift/cowDetail.png",
-    description:
-      `Cows are the most coveted resource for rural Cambodian families. In the rice fields, villagers must manually pull a plow through hard-packed clay to get a rice paddy ready for planting, or they pay a great deal to rent a cow. It can take more than a solid week of back-breaking labor to plow the same plot of land that a cow can plow in less than a day. And cow manure acts as a natural and readily available fertilizer for the crops, improving crop yield even on days the cow is resting.\n\n
-Through a cow, a family can be empowered to feed themselves through increased food production, and to generate critically needed family income. The cow is shared among 5 families, used by all and bred annually. As calves are born each family becomes a “donor family”, with the families passing on ownership of the calves among themselves. Eventually the group (a “Self Help Group”) passes on a calf to a new Self Help Group. So your gift keeps giving… eventually helping an entire community in moving from poverty to self-reliance.\n\n
-Like all Village Gifts through Sustainable Cambodia, this gift will be pooled and used to support the empowerment-based Community Development programs. These programs become self-sustaining through the pass-on process, through which the gift will continue for years to come as families become donors themselves. And all the empowerment begins with this gift!`,
-    options: [
-      { label: "Gift of a Full Cow", price: 800 },
-      { label: "Share of a Cow", price: 200 }
-    ]
-  },
-  {
-    key: "ducks",
-    label: "Ducks",
-    title: "A Gift of Ducks",
-    image: "/src/img/gift/duck.png",
-    detailImage: "/src/img/gift/ducks.png",
-    description:
-      `Ducks are one of the many family empowerment programs used in Village Development by Sustainable Cambodia. Duck eggs help to provide protein for Cambodian children and families. Protein is often lacking in Cambodian diets, and protein deficiency is a primary cause of malnutrition and disease. And ducks are the perfect solution for many families: Foraging ducks roam the family garden, eating harmful bugs and leaving behind fertilizer which helps to improve crop yield.
-
-Ducks provide empowerment to families in several ways: Eggs can be sold at market, providing an important source of income for the family. Ducklings mature at about 19 weeks, and then will lay between four to seven eggs per week.
-
-These programs become self-sustaining through the pass-on process, through which this gift will continue for years to come. Not only will the family feed themselves, the family will also become a “donor family” as they will pass on ducks or other animals to neighboring families, who then do the same. And all this empowerment begins with this gift of ducks!`,
-    options: [
-      { label: "Ducks for a Village (10 Families)", price: 500 },
-      { label: "Ducks for 5 Families", price: 250 }
-    ]
-  },
-  {
-    key: "chickens",
-    label: "Chickens",
-    title: "A Gift of Chickens",
-    image: "/src/img/gift/chicken.png",
-    detailImage: "/src/img/gift/chickens.png",
-    description:
-      `Chickens are very important additions to a Cambodian family. Chicken eggs help to provide important protein for the children and family, protein which is often lacking in Cambodian diets. And eggs and chickens can provide critically needed family income at the local market. In the vegetable garden, chickens eat harmful bugs, scratch up the soil and enrich it with droppings, contributing to the family’s vegetable crop. Chicks mature in 18-20 weeks, and then will lay about one egg per day.
-
-Like all Village Gifts through Sustainable Cambodia, this gift will be pooled and used to support the empowerment-based Community Development programs. These programs become self-sustaining through the pass-on process, through which the gift will continue for years to come… the family can feed themselves, and the family soon becomes a “donor family” themselves, as they will pass on chickens or other animals to nearby families, who then do the same. Because Sustainable Cambodia operates on under 3% admin & fundraising costs, and those costs are provided by the founders and directors, every penny of this contribution will be used directly in the villages to empower village families. And it all starts with this gift of chickens!`,
-    options: [
-      { label: "10 Chickens (Family)", price: 80 },
-      { label: "5 Chickens", price: 40 }
-    ]
-  },
-  {
-    key: "water",
-    label: "Clean Water",
-    title: "A Gift of Clean Water",
-    image: "/src/img/homePage/water.png",
-    detailImage: "/src/img/gift/waters.png",
-    description:
-      `Two-thirds of rural Cambodians do not have access to clean water. Many families have no alternative but to drink dirty water from scum-covered retaining ponds or must carry water in plastic containers from rivers that are kilometers away. Children are traditionally the primary water carriers in the family and often cannot attend school as it may take all day to carry water to their homes. A well, pond or rainwater catchment system can change all of this.
-
-When clean water is available in a community, the whole village is transformed. Health and hygiene are vastly improved. This gift can help provide a well, or a community water pond and biosand filters, or a rooftop rainwater harvesting system. With a plentiful source of clean water, opportunities for vegetable gardens, fishponds and livestock will benefit the whole community, eliminating hunger and providing resources for economic development. And children can quickly gather water from the community well and still have time to attend school – becoming the foundation for a better Cambodia.
-
-Like all Village Gifts through Sustainable Cambodia, this gift will be pooled and used to support the empowerment-based Community Development programs. These programs become self-sustaining through the pass-on process, through which the gift will continue for years to come as families become donors themselves, helping neighboring villages to install water systems. And all this empowerment starts with this gift of water….`,
-    options: [
-      { label: "Full Well or Water Project", price: 2000 },
-      { label: "Share of a Well", price: 200 }
-    ]
-  },
-  {
-    key: "garden",
-    label: "Vegetable Garden",
-    title: "A Gift of a Garden",
-    image: "src/img/gift/vegetable.png",
-    detailImage: "src/img/gift/garden.png",
-    description:
-      `Gardens are a major key to improving nutrition and eliminating hunger for rural Cambodian families. Many families traditionally subsisted on rice, without the knowledge, seed or irrigation needed to grow alternative crops. The addition of vegetables gives the children and families much-needed vitamins and minerals to improve and sustain health.
-
-The dry season can make gardening difficult – but with irrigation ponds, gardens can be cultivated year-round. The families are taught how to raise cucumbers, sweet potatoes, peanuts, tomatoes, squash, greens and other alternative crops. The gardens not only provide needed nutrition, but the families can sell vegetables at the market, generating critically needed income.
-
-These programs become self-sustaining through the pass-on process, through which this gift will continue for years to come, as families become donors themselves, helping families in neighboring villages to grow a garden. And all this empowerment begins with this gift of a garden!`,
-    options: [
-      { label: "Gardens Galore (5 Families)", price: 400 },
-      { label: "Garden for 1 Family", price: 80 }
-    ]
-  },
-  {
-    key: "basket",
-    label: "Village Basket",
-    title: "A Big Village Basket",
-    image: "/src/img/gift/mix.png",
-    detailImage: "/src/img/gift/mixs.png",
-    description:
-      `The contribution of a Big Village Gift Basket is combined with other Community Development funding to help continue the empowerment of rural Cambodian villages. Through the SC Community Development program, families obtain clean water (wells, BSF filters, ponds or rainwater harvesting), from which fresh water will help to end disease. They will receive training and seeds for alternative crops such as sweet potatoes, peanuts, tomatoes, squash and greens. Malnutrition in children will be reduced, and children will be able to attend school and preschool. Families will be given the opportunity to raise fish, chickens, ducks, pigs or cows. Your gift will help a poverty-stricken village to be transformed.
-
-These programs become self-sustaining through the pass-on process, through which this gift will continue for years to come as families become donors themselves, passing on breeding animals and water, fish and gardens to other nearby villages.`,
-    options: [
-      { label: "Big Village Basket", price: 5000 },
-      { label: "Small Village Basket", price: 2500 }
-    ]
+onMounted(async () => {
+  try {
+    const response = await apiInstance.get('/gifts');
+    gifts.value = response.data.map(gift => ({
+      ...gift,
+      image: getImageUrl(gift.image),
+      detailImage: getImageUrl(gift.detail_image)
+    }));
+    if (gifts.value.length > 0) {
+      selected.value = gifts.value[0].key;
+    }
+  } catch (error) {
+    console.error('Error loading gifts:', error);
+  } finally {
+    gifts.value.forEach(gift => {
+      selectedOptions.value[gift.key] = gift.options[0];
+      quantities.value[gift.key] = 0;
+    });
+    isLoading.value = false;
   }
-]);
-
-// Initialize selected options
-gifts.value.forEach(gift => {
-  selectedOptions.value[gift.key] = gift.options[0];
 });
 
 const giftsMap = computed(() => {
@@ -435,21 +349,14 @@ function decrement(key) {
 
 function updateTotal() {
   total.value = Object.keys(quantities.value).reduce((sum, key) => {
-    return sum + selectedOptions.value[key].price * quantities.value[key];
+    const option = selectedOptions.value[key];
+    if (option) {
+      return sum + option.price * quantities.value[key];
+    }
+    return sum;
   }, 0);
 }
-const expandedDescriptions = ref({
-  cows: false,
-  ducks: false,
-  chickens: false,
-  water: false,
-  garden: false,
-  basket: false
-});
 
-function toggleDescription(key) {
-  expandedDescriptions.value[key] = !expandedDescriptions.value[key];
-}
 function formatDescription(text) {
   if (!text) return "";
   return text
@@ -457,11 +364,9 @@ function formatDescription(text) {
     .map(paragraph => `<p class="mb-4">${paragraph.trim()}</p>`)
     .join("");
 }
-
 </script>
 
 <style>
-/* Custom animations */
 .hover-scale {
   transition: transform 0.3s ease;
 }
@@ -476,11 +381,9 @@ input[type="number"]::-webkit-outer-spin-button {
 input[type="number"] {
   -moz-appearance: textfield;
 }
-
 .rotate-180 {
   transform: rotate(180deg);
 }
-
 .transition-all {
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);

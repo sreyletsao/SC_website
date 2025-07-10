@@ -11,6 +11,7 @@ import Register from '@/components/Authentication/Register.vue'
 import Dashboard from '@/components/Admin/Dashboard.vue'
 import DashboardHome from '@/components/Admin/DashboardHome.vue'
 import BoardMember from '@/components/Admin/BoardMember.vue'
+import GiftManagement from '@/components/Admin/GiftManagement.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -37,6 +38,11 @@ const router = createRouter({
           path: 'board-member',
           name: 'board-member',
           component: BoardMember
+        },
+        {
+          path: '/gift-management',
+          name: 'gift-management',
+          component: GiftManagement
         }
       ]
     }
