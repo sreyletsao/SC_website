@@ -104,7 +104,6 @@
                 <td class="p-4">
                   <div>
                     <div class="font-semibold text-gray-900">{{ member.name }}</div>
-                    <div class="text-sm text-gray-500 mt-1">{{ member.description.substring(0, 60) }}...</div>
                   </div>
                 </td>
                 <td class="p-4">
