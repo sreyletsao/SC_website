@@ -8,7 +8,7 @@
       <ul class="space-y-2 px-4">
         <li>
           <RouterLink
-            to="/dashboard"
+            to="/dashboard/dashboard-home"
             class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-slate-700 transition"
             active-class="bg-slate-700"
           >
@@ -18,33 +18,25 @@
         </li>
         <li>
           <RouterLink
-            to="/dashboard/users"
+            to="/dashboard/board-member"
             class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-slate-700 transition"
             active-class="bg-slate-700"
           >
             <i class="fas fa-users"></i>
-            Users
+            Board Members
           </RouterLink>
         </li>
         <li>
           <RouterLink
-            to="/dashboard/settings"
+            to="/dashboard/on-site-team"
             class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-slate-700 transition"
             active-class="bg-slate-700"
           >
             <i class="fas fa-cog"></i>
-            Settings
+            On-Site Team
           </RouterLink>
         </li>
-        <li>
-          <RouterLink
-            to="/logout"
-            class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-red-600 transition"
-          >
-            <i class="fas fa-sign-out-alt"></i>
-            Logout
-          </RouterLink>
-        </li>
+      
       </ul>
     </nav>
   </aside>

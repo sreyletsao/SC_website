@@ -10,11 +10,7 @@
   },
   "dependencies": {
     "axios": "^1.10.0",
-<<<<<<< HEAD
     "emailjs-com": "^3.2.0",
-=======
-    "axois": "^0.0.1-security",
->>>>>>> c269f9e177701d9b7271ab5e2f33cc3c9552b082
     "keen-slider": "^6.8.6",
     "lucide-vue-next": "^0.525.0",
     "swiper": "^11.2.10",

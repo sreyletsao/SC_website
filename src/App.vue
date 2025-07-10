@@ -1,11 +1,11 @@
 <template>
   <div class="min-h-screen flex flex-col">
-    <TopBar v-if="showTopbar" />
-    <Navbar v-if="showNavbar" />
+    <TopBar v-if="!isDashboardRoute" />
+    <Navbar v-if="!isDashboardRoute" />
     <main class="flex-grow">
       <RouterView />
     </main>
-    <Footer v-if="showFooter" />
+    <Footer v-if="!isDashboardRoute" />
   </div>
 </template>
 
@@ -19,8 +19,6 @@ import Footer from './components/Footer.vue'
 
 const route = useRoute()
 
-// Hide TopBar, Navbar, and Footer on dashboard page
-const showTopbar = computed(() => route.name !== 'dashboard')
-const showNavbar = computed(() => route.name !== 'dashboard')
-const showFooter = computed(() => route.name !== 'dashboard')
+// ❗ This will match /dashboard and any child like /dashboard/board-members
+const isDashboardRoute = computed(() => route.path.startsWith('/dashboard'))
 </script>

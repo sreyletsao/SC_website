@@ -112,7 +112,6 @@
   </div>
 </template>
 <script setup>
-import { onMounted, ref } from 'vue'
 
 
 // ✅ Replace with your actual values from EmailJS
